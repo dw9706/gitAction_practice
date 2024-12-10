@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: gitAction_practice
+
+management:
+  endpoints:
+    web:
+      base-path: /management
+      path-mapping:
+        health: health_check
