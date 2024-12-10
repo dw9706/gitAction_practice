@@ -4,6 +4,7 @@ GREEN_PORT="none"
 
 for port in "${ports[@]}";
 do
+  echo "http://$ip:$port/management/health_check"
   RESPONSE=$(curl -s http://$ip:$port/management/health_check)
   IS_ACTIVE=$(echo ${RESPONSE} | grep 'UP' | wc -l)
 
