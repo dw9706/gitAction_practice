@@ -63,7 +63,7 @@ jobs:
         script_stop: true
         script: |
           chmod +x ~/script/deploy.sh
-          ~/script/deploy.sh"
+          ~/script/deploy.sh
 
         
 
