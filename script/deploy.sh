@@ -15,7 +15,7 @@ do
   elif [[ $IS_ACTIVE -eq 1 && "$port" == "8081" ]];
   then
     BLUE_PORT="8081"
-    GREEN_PORT="8081"
+    GREEN_PORT="8080"
   fi
 done
 
@@ -36,7 +36,7 @@ then
 fi
 echo -e "그린($GREEN_PORT)과 블루($BLUE_PORT) 서버 헬스 체크 완료!"
 
-nohup java -jar -Dserver.por=${GREEN_PORT} ~/target/gitAction_pratice-0.0.1-SNAPSHOT.jar > log 2>&1 &
+nohup java -jar -Dserver.port=${GREEN_PORT} ~/target/gitAction_pratice-0.0.1-SNAPSHOT.jar > log 2>&1 &
 
 for retry in {1..10}
 do
