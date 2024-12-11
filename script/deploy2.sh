@@ -9,8 +9,7 @@ do
   if [ $IS_ACTIVE -eq 1 ];
   then
     echo -e "nginx 설정파일에서 $port를 제거합니다."
-    sed -i "/127.0.0.1:$port/d" /etc/nginx/nginx.conf
-    sleep 10
+    sudo sed -i "/127.0.0.1:$port/d" /etc/nginx/nginx.conf
 
     sudo nginx -t
     echo "nginx를 reload합니다."
@@ -43,8 +42,8 @@ do
     fi
 
     echo -e "nginx 설정파일에 $ip:$port을 추가합니다."
-    sed -i "/upstream servers {/ a \    server 127.0.0.1:$port;" /etc/nginx/nginx.conf
-    sleep 10
+    sudo sed -i "/upstream servers {/ a \    server 127.0.0.1:$port;" /etc/nginx/nginx.conf
+
     sudo nginx -t
     echo "nginx를 reload합니다."
     sudo nginx -s reload
