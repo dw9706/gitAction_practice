@@ -1,7 +1,7 @@
 ports=("8080" "8081")
 ip="127.0.0.1"
 
-for port in "${port[@]}";
+for port in "${ports[@]}";
 do
   echo -e "http://$ip:$port/management/health_check"
   RESPONSE=$(curl -s http://$ip:$port/management/health_check)
