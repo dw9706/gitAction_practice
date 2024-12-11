@@ -42,18 +42,29 @@ jobs:
         target: "~/"
         rm: false
 
-    - name: upload script file
+    - name: upload check script file
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.SSH_IP }}
         username: ${{ secrets.SSH_ID }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        source: "script/deploy.sh"
+        source: "script/check.sh"
+        target: "~/"
+        rm: false
+
+    - name: upload deploy script file
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SSH_IP }}
+        username: ${{ secrets.SSH_ID }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        source: "script/deploy2.sh"
         target: "~/"
         rm: false
         
-    - name: execute shell script
+    - name: execute check shell script
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_IP }}
@@ -62,8 +73,23 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         script_stop: true
         script: |
-          chmod +x ~/script/deploy.sh
-          ~/script/deploy.sh
+          chmod +x ~/script/check.sh
+          ~/script/check.sh
+
+    - name: execute deploy shell script
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_IP }}
+        username: ${{ secrets.SSH_ID }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        script_stop: true
+        script: |
+          chmod +x ~/script/deploy2.sh
+          ~/script/deploy2.sh
+          
+          
+          
 
         
 
