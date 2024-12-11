@@ -1,7 +1,7 @@
 ports=("8080" "8081")
 ip="127.0.0.1"
 
-for port in "${port[@]}"
+for port in "${port[@]}";
 do
   echo -e "http://$ip:$port/management/health_check"
   RESPONSE=$(curl -s http://$ip:$port/management/health_check)
@@ -23,7 +23,7 @@ do
     do
       RESPONSE=$(curl -s http://$ip:$GREEN_PORT/management/health_check)
       PORT_HEALTH=$(echo ${RESPONSE} | grep 'UP' | wc -l)
-      if [ $PORT_HEALTH -eq 1 ]
+      if [ $PORT_HEALTH -eq 1 ];
       then
         break
       else
@@ -32,7 +32,7 @@ do
       fi
     done
 
-    if [ $PORT_HEALTH -eq 1 ]
+    if [ $PORT_HEALTH -eq 1 ];
     then
       echo -e "$ip:$port에 정상적으로 spring boot가 실행 중입니다."
     else
